@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpaperset.com/w/full/c/b/2/55667.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .input-container, .output-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+            padding: 15px;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+    <title>TEMPERATURE CONVERTER</title>
+</head>
+<body>
+    <div class="header">
+        <h1>TEMPERATURE CONVERTER</h1>
+        <p>CONVERT TEMPERATURES BETWEEN CELSIUS, FAHRENHEIT, AND KELVIN.</p>
+    </div>
+    <div class="container">
+        <div class="input-container">
+            <label for="temperature">TEMPERATURE:</label>
+            <input type="number" id="temperature" placeholder="ENTER TEMPERATURE">
+            <select id="inputUnit">
+                <option value="celsius">CELSIUS</option>
+                <option value="fahrenheit">FAHRENHEIT</option>
+                <option value="kelvin">KELVIN</option>
+            </select>
+        </div>
+        <div class="output-container">
+            <label for="outputUnit">CONVERT TO:</label>
+            <select id="outputUnit">
+                <option value="celsius">CELSIUS</option>
+                <option value="fahrenheit">FAHRENHEIT</option>
+                <option value="kelvin">KELVIN</option>
+            </select>
+            <button id="convertBtn">CONVERT</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+    <div class="footer">
+        <p>&copy; TEMPERATURE CONVERTER BY CHETANYA AGARWAL</p>
+    </div>
+    <script>
+        document.getElementById("convertBtn").addEventListener("click", function () {
+            const inputTemperature = parseFloat(document.getElementById("temperature").value);
+            const inputUnit = document.getElementById("inputUnit").value;
+            const outputUnit = document.getElementById("outputUnit").value;
+            const resultElement = document.getElementById("result");
+
+            if (!isNaN(inputTemperature)) {
+                let resultTemperature;
+
+                if (inputUnit === "celsius") {
+                    if (outputUnit === "fahrenheit") {
+                        resultTemperature = (inputTemperature * 9 / 5) + 32;
+                    } else if (outputUnit === "kelvin") {
+                        resultTemperature = inputTemperature + 273.15;
+                    } else {
+                        resultTemperature = inputTemperature;
+                    }
+                } else if (inputUnit === "fahrenheit") {
+                    if (outputUnit === "celsius") {
+                        resultTemperature = (inputTemperature - 32) * 5 / 9;
+                    } else if (outputUnit === "kelvin") {
+                        resultTemperature = (inputTemperature - 32) * 5 / 9 + 273.15;
+                    } else {
+                        resultTemperature = inputTemperature;
+                    }
+                } else if (inputUnit === "kelvin") {
+                    if (outputUnit === "celsius") {
+                        resultTemperature = inputTemperature - 273.15;
+                    } else if (outputUnit === "fahrenheit") {
+                        resultTemperature = (inputTemperature - 273.15) * 9 / 5 + 32;
+                    } else {
+                        resultTemperature = inputTemperature;
+                    }
+                }
+
+                resultElement.textContent = `${inputTemperature} ${inputUnit.toUpperCase()} IS ${resultTemperature.toFixed(2)} ${outputUnit.toUpperCase()}`;
+            } else {
+                resultElement.textContent = "Please enter a valid temperature.";
+            }
+        });
+    </script>
+</body>
+</html>
