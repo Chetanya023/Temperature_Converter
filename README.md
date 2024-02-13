@@ -10,4 +10,4 @@ requirements with precision.
 • Prioritized user accessibility by incorporating features for effortless scale switching, enhancing the 
 overall usability of the converter. 
 
-• Link: https://chetanya023.github.io/Temperature_Converter.github.io/
+• Link: https://chetanya023.github.io/Temperature_Converter/
